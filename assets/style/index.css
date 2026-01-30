@@ -1,0 +1,41 @@
+
+.firstPage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.firstPage> div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.firstSection > div {
+  text-align: center;
+}
+
+.secondSection > div > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lastSection {
+  display: flex;
+  justify-content: center;
+}
+
+.lastSection > div {
+  display: flex;
+  justify-content: center;
+  width: 130px;
+}
+
+.lastSection > div > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
