@@ -45,7 +45,7 @@
   height: 100%;
   object-fit: cover;
 }
-.firstSection  {
+.firstSection {
   display: flex;
   justify-content: center;
   width: 300px;
@@ -71,7 +71,7 @@
   display: none;
 }
 
-.lastPage{
+.lastPage {
   width: 100%;
   height: 100vh;
   background: url("../image/result.png");
@@ -83,28 +83,29 @@
   align-items: center;
 }
 
-.lastPage> div:first-child {
+.lastPage > div:first-child {
   color: black;
   font: bold 28px sans-serif;
   margin-bottom: 5px;
 }
 
-.lastPage> div:last-child {
+.lastPage > div:last-child {
   color: rgb(232, 9, 9);
   font: bold 28px sans-serif;
   margin-bottom: 5px;
 }
 
-.secondCounter{
+.secondCounter {
   color: red;
   font-size: 24px;
 }
-.startButton{
-  background-color: green;
-}
-.firstPage.hide{
+.firstPage.hide {
   display: none;
 }
-.gamePage.show{
+.gamePage.show {
   display: block;
+}
+
+.lastPage {
+  display: none;
 }
