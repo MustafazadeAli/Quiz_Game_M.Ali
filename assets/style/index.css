@@ -45,9 +45,10 @@
   height: 100%;
   object-fit: cover;
 }
-.firstSection {
+.firstSection  {
   display: flex;
   justify-content: center;
+  width: 300px;
   margin-bottom: 40px;
 }
 .secondSection > div {
@@ -59,7 +60,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 80px;
+  width: 100%;
   height: 180px;
   background-color: black;
   color: white;
@@ -97,4 +98,13 @@
 .secondCounter{
   color: red;
   font-size: 24px;
+}
+.startButton{
+  background-color: green;
+}
+.firstPage.hide{
+  display: none;
+}
+.gamePage.show{
+  display: block;
 }
