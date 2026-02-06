@@ -103,9 +103,54 @@
   display: none;
 }
 .gamePage.show {
-  display: block;
+  display: flex;
 }
-
 .lastPage {
   display: none;
+}
+.progressBarContainer {
+  margin: 50px 0;
+}
+.progress {
+  --bs-progress-height: 25px;
+}
+.questionSection {
+  display: flex;
+  background-color: gray;
+  padding: 60px;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  border-radius: 10px;
+  flex-direction: column;
+}
+.questionSection > div :first-child {
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+}
+.desc {
+  font: 600 20px sans-serif;
+}
+.answerSection {
+  display: flex;
+  flex-direction: column;
+  margin-top: 15px;
+  gap: 10px;
+}
+.answerSection > div > div:first-child {
+  height: 60px;
+  color: rgb(255, 255, 255);
+  background-color: rgb(57, 125, 147);
+  display: flex;
+  align-items: center;
+  border-radius: 15px;
+}
+.answerSection > div > div:last-child {
+  height: 50px;
+  background-color: rgb(51, 105, 97);
+  color: white;
+  display: flex;
+  align-items: center;
+  border-radius: 12px;
 }
