@@ -3,11 +3,11 @@ let progressValue = 0;
 let randomIndex = 0;
 let clickEnabled = true;
 let counter = 1;
-const keyToastEl = document.getElementById("keyToast")
-const keyToast = new bootstrap.Toast(keyToastEl,{
+const keyToastEl = document.getElementById("keyToast");
+const keyToast = new bootstrap.Toast(keyToastEl, {
   autohide: true,
-  delay: 10000
-})
+  delay: 10000,
+});
 let questions = [
   {
     question: "Inside which HTML element do we put the JavaScript?",
@@ -43,9 +43,10 @@ class QuizGame {
   }
   getRandomQuestion() {
     randomIndex = Math.floor(Math.random() * questions.length);
+    this.showQuestion();
   }
   showQuestion() {
-    gamePage_container = document.createElement("div");
+    let gamePage_container = document.createElement("div");
     gamePage_container.className = "container gamePage_container";
     gamePage_container.innerHTML = `
      <div class="container">
@@ -91,11 +92,12 @@ class QuizGame {
     
     
     `;
+
+    gamePage.appendChild(gamePage_container);
   }
 }
 
 let newGame = new QuizGame();
-
 
 window.addEventListener(
   "keydown",
@@ -127,13 +129,13 @@ window.addEventListener(
     } else {
       console.log("Warning !");
     }
-  })
+  }),
 );
-
 
 document.querySelector(".startButton").addEventListener("click", () => {
   document.querySelector(".firstPage").classList.add("hide");
   document.querySelector(".gamePage").classList.add("show");
+  newGame.getRandomQuestion();
 });
 document.querySelector(".exitButton").addEventListener("click", () => {
   window.close();
