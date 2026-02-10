@@ -27,7 +27,7 @@ let questions = [
 
   {
     question: "Inside which HTML element do we put the JavaScript?",
-    answers: ["<js>", "<script>", "<javascript>"],
+    answers: ["js", "script", "javascript"],
     trueAnswer: "b",
   },
   {
@@ -46,9 +46,8 @@ class QuizGame {
     this.showQuestion();
   }
   showQuestion() {
-    let gamePage_container = document.createElement("div");
-    gamePage_container.className = "container gamePage_container";
-    gamePage_container.innerHTML = `
+questionSection.innerHTML = `
+    <div>
      <div class="container">
         <div>
           <div class="progressBarContainer">
@@ -93,9 +92,28 @@ class QuizGame {
     
     `;
 
+
     gamePage.appendChild(gamePage_container);
   }
 }
+   
+nextQuestion() {
+  if (questions.length === 1) {
+    document.querySelector(".result_page").classList.add("show");
+    document.querySelector(".game_page").classList.remove("show");
+    window.removeEventListener("keydown", a);
+    
+    setTimeout(() => {
+      document.querySelector(".result_page").classList.remove("show");
+      document.querySelector(".initial_page").classList.remove("hide");
+      window.location.reload();
+    }, 5000);
+  } else {
+    questions.splice(randomIndex, 1);
+    this.getRandomQuestion();
+  }
+}
+
 
 let newGame = new QuizGame();
 
@@ -109,7 +127,7 @@ window.addEventListener(
           let progress_bar = document.querySelector(".progress-bar");
           let faiz = progressValue + Math.floor(100 / questions.length);
           progress_bar.style.width = faiz + "%";
-          progress_bar.textContent = faiz + "%"; // Görselde innerHTML kullanılmış
+          progress_bar.textContent = faiz + "%"; 
           document.querySelector("#" + e.key).style.backgroundColor = "#163d08";
           document.querySelector("#" + e.key).style.color = "white";
         } else {
