@@ -117,6 +117,7 @@
 .questionSection {
   display: flex;
   background-color: gray;
+  width: 100%;
   padding: 60px;
   align-items: center;
   justify-content: center;
@@ -153,4 +154,24 @@
   display: flex;
   align-items: center;
   border-radius: 12px;
+}
+
+.questionSection > div {
+  width: 100%;
+}
+
+.gamePage.hide {
+  display: none;
+}
+
+.lastPage.show {
+  display: flex;
+}
+
+.lastPage.hide {
+  display: none;
+}
+
+.firstPage.show {
+  display: flex;
 }
