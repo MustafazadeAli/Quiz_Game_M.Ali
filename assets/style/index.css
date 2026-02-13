@@ -160,10 +160,6 @@ body{
   align-items: center;
   border-radius: 12px;
 }
-<<<<<<< HEAD
-=======
-
->>>>>>> 86cbfb657465af2f34fc2a18d784aa2711dd41fe
 .questionSection > div {
   width: 100%;
 }
@@ -182,8 +178,4 @@ body{
 
 .firstPage.show {
   display: flex;
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 86cbfb657465af2f34fc2a18d784aa2711dd41fe
