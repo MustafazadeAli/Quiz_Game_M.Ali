@@ -1,4 +1,5 @@
 let gamePage = document.querySelector(".gamePage");
+let questionSection = document.querySelector(".questionSection");
 let progressValue = 0;
 let randomIndex = 0;
 let clickEnabled = true;
@@ -11,31 +12,28 @@ const keyToast = new bootstrap.Toast(keyToastEl, {
 let questions = [
   {
     question: "Inside which HTML element do we put the JavaScript?",
-    answers: ["<js>", "<script>", "<javascript>"],
+    answers: ["&lt;js&gt;", "&lt;script&gt;", "&lt;javascript&gt;"],
     trueAnswer: "b",
   },
 
   {
     question: "Where is the correct place to insert a JavaScript?",
     answers: [
-      "The <head> section",
-      "The <body> section",
-      "Both the <head> section and the <body> section are correct",
+      "The &lt;head&gt; section",
+      "The &lt;body&gt; section",
+      "Both the  &lt;head&gt; section and the &lt;body&gt; section are correct",
     ],
-    trueAnswer: "b",
+    trueAnswer: "c",
   },
 
   {
-    question: "Inside which HTML element do we put the JavaScript?",
-    answers: ["js", "script", "javascript"],
-    trueAnswer: "b",
-  },
-  {
     question: "In what year was JavaScript created ? ",
-    answers: ["<1995>", "<1992>", "<2000>"],
+    answers: ["&lt;1995&gt;", "&lt;1992&gt;", "&lt;2000&gt;"],
     trueAnswer: "a",
   },
 ];
+
+let questionCount = questions.length;
 
 class QuizGame {
   constructor() {
@@ -46,7 +44,7 @@ class QuizGame {
     this.showQuestion();
   }
   showQuestion() {
-questionSection.innerHTML = `
+    questionSection.innerHTML = `
     <div>
      <div class="container">
         <div>
@@ -56,12 +54,12 @@ questionSection.innerHTML = `
                 class="progress-bar"
                 role="progressbar"
                 aria-label="Example with label"
-                style="width:" + ${progressValue} "%"
+                style="width:${progressValue}%"
                 aria-valuenow="${progressValue}"
                 aria-valuemin="0"
                 aria-valuemax="100"
               >
-               ${progressValue === 0 ? "" : progressValue}
+               ${progressValue === 0 ? "" : progressValue + "%"}
               </div>
             </div>
           </div>
@@ -91,29 +89,26 @@ questionSection.innerHTML = `
     
     
     `;
+  }
 
+  nextQuestion() {
+    counter++;
+    if (questions.length === 1) {
+      document.querySelector(".lastPage").classList.add("show");
+      document.querySelector(".gamePage").classList.add("hide");
+      window.removeEventListener("keydown", a);
 
-    gamePage.appendChild(gamePage_container);
+      setTimeout(() => {
+        window.location.reload();
+        document.querySelector(".lastPage").classList.add("hide");
+        document.querySelector(".firstPage").classList.add("show");
+      }, 5000);
+    } else {
+      questions.splice(randomIndex, 1);
+      this.getRandomQuestion();
+    }
   }
 }
-   
-nextQuestion() {
-  if (questions.length === 1) {
-    document.querySelector(".result_page").classList.add("show");
-    document.querySelector(".game_page").classList.remove("show");
-    window.removeEventListener("keydown", a);
-    
-    setTimeout(() => {
-      document.querySelector(".result_page").classList.remove("show");
-      document.querySelector(".initial_page").classList.remove("hide");
-      window.location.reload();
-    }, 5000);
-  } else {
-    questions.splice(randomIndex, 1);
-    this.getRandomQuestion();
-  }
-}
-
 
 let newGame = new QuizGame();
 
@@ -125,9 +120,10 @@ window.addEventListener(
         clickEnabled = false;
         if (e.key === questions[randomIndex].trueAnswer) {
           let progress_bar = document.querySelector(".progress-bar");
-          let faiz = progressValue + Math.floor(100 / questions.length);
+          let faiz = progressValue + Math.floor(100 / questionCount);
           progress_bar.style.width = faiz + "%";
-          progress_bar.textContent = faiz + "%"; 
+          progress_bar.textContent = faiz + "%";
+          progressValue = progressValue + Math.floor(100 / questionCount);
           document.querySelector("#" + e.key).style.backgroundColor = "#163d08";
           document.querySelector("#" + e.key).style.color = "white";
         } else {
@@ -138,7 +134,7 @@ window.addEventListener(
         setTimeout(() => {
           newGame.nextQuestion();
           clickEnabled = true;
-        }, 1000);
+        }, 2000);
       } else {
         if (!keyToastEl.classList.contains("show")) {
           keyToast.show();

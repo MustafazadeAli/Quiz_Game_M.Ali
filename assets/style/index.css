@@ -1,3 +1,6 @@
+body{
+  width: 100%;
+}
 .firstPage {
   display: flex;
   justify-content: center;
@@ -104,6 +107,8 @@
 }
 .gamePage.show {
   display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .lastPage {
   display: none;
@@ -153,4 +158,23 @@
   display: flex;
   align-items: center;
   border-radius: 12px;
+}
+.questionSection > div {
+  width: 100%;
+}
+
+.gamePage.hide {
+  display: none;
+}
+
+.lastPage.show {
+  display: flex;
+}
+
+.lastPage.hide {
+  display: none;
+}
+
+.firstPage.show {
+  display: flex;
 }
