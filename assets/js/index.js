@@ -4,6 +4,8 @@ let progressValue = 0;
 let randomIndex = 0;
 let clickEnabled = true;
 let counter = 1;
+const result = document.querySelector("result")
+let myQuestioncount = document.querySelector("questionCount")
 const keyToastEl = document.getElementById("keyToast");
 const keyToast = new bootstrap.Toast(keyToastEl, {
   autohide: true,
@@ -34,10 +36,10 @@ let questions = [
 ];
 
 let questionCount = questions.length;
-
+let correctAnswer = 0
 class QuizGame {
   constructor() {
-    console.log("salam");
+   result.innerHTML = localStorage.getItem("my score") || 0 ;
   }
   getRandomQuestion() {
     randomIndex = Math.floor(Math.random() * questions.length);
@@ -59,7 +61,7 @@ class QuizGame {
                 aria-valuemin="0"
                 aria-valuemax="100"
               >
-               ${progressValue === 0 ? "" : progressValue + "%"}
+               ${progressValue === 0 ? "" : Math.floor(progressValue) + "%"}
               </div>
             </div>
           </div>
@@ -94,6 +96,8 @@ class QuizGame {
   nextQuestion() {
     counter++;
     if (questions.length === 1) {
+      localStorage.setItem("my score",Math.floor(correctAnswer / questionCount * 100))
+      myQuestioncount.innerHTML = correctAnswer + "/" +  questionCount
       document.querySelector(".lastPage").classList.add("show");
       document.querySelector(".gamePage").classList.add("hide");
       window.removeEventListener("keydown", a);
@@ -119,11 +123,12 @@ window.addEventListener(
       if (e.key === "a" || e.key === "b" || e.key === "c") {
         clickEnabled = false;
         if (e.key === questions[randomIndex].trueAnswer) {
+          correctAnswer = correctAnswer + 1
           let progress_bar = document.querySelector(".progress-bar");
-          let faiz = progressValue + Math.floor(100 / questionCount);
+          let faiz = progressValue + 100 / questionCount;
           progress_bar.style.width = faiz + "%";
-          progress_bar.textContent = faiz + "%";
-          progressValue = progressValue + Math.floor(100 / questionCount);
+          progress_bar.textContent = Math.floor(faiz) + "%";
+          progressValue = progressValue +100 / questionCount;
           document.querySelector("#" + e.key).style.backgroundColor = "#163d08";
           document.querySelector("#" + e.key).style.color = "white";
         } else {
